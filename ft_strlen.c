@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 18:18:44 by mefische          #+#    #+#             */
-/*   Updated: 2025/05/02 12:48:47 by mefische         ###   ########.fr       */
+/*   Created: 2025/04/08 11:33:33 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/02 11:56:12 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_putstr(char *s)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	int	l;
 
-	i = 0;
+	l = 0;
 	if (!s)
-		s = "(null)";
-	while (s[i])
+		return (0);
+	while (s[l])
 	{
-		write(1, &s[i], 1);
-		i++;
+		l++;
 	}
-	return (i);
+	return (l);
 }
+
+/*int	main()
+{
+	printf("%zu", ft_strlen("Hello"));
+}*/

@@ -6,7 +6,7 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:27:18 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/01 16:30:18 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:17:38 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <string.h>
-# include <fcntl.h> //for open
+# include <fcntl.h>
+# include <stdarg.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -74,5 +79,22 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
+
+//get_next_line
+char	*get_next_line(int fd);
+char	*get_next_line(int fd);
+size_t	ft_gnlstrlen(const char *s);
+int		ft_gnlstrchr(const char *s, int c);
+char	*ft_gnlstrndup(char *s, size_t line_len);
+char	*ft_gnlstrjoin(char *s1, char *s2);
+
+//printf
+int	ft_printf(const char *f, ...);
+int	ft_putchar(char c);
+int	ft_putstr(char *s);
+int	ft_putnbr(int n);
+int	ft_unsig_putnbr(unsigned int n);
+int	ft_printhexa(unsigned long n, char *base);
+int	ft_pointer(void *ptr);
 
 #endif

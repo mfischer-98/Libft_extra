@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:46:48 by mefische          #+#    #+#             */
-/*   Updated: 2025/05/26 11:10:37 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:18:15 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static char	*read_line(int fd, char *stash)
 {
@@ -78,7 +78,7 @@ static char	*update_stash(char *stash, char *line)
 	line_len = ft_strlen(line);
 	if (stash[line_len] == '\0')
 		return (free(stash), (NULL));
-	new_stash = ft_strndup(stash, line_len);
+	new_stash = ft_gnlstrndup(stash, line_len);
 	if (stash)
 		free(stash);
 	return (new_stash);
@@ -86,32 +86,36 @@ static char	*update_stash(char *stash, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*stash;
+	static char	*stash[1024];
 	char		*line;
 
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = read_line(fd, stash);
-	if (!stash)
+	stash[fd] = read_line(fd, stash[fd]);
+	if (!stash[fd])
 		return (NULL);
-	line = ft_get_line(stash);
+	line = ft_get_line(stash[fd]);
 	if (!line)
 	{
-		free(stash);
-		stash = NULL;
+		free(stash[fd]);
+		stash[fd] = NULL;
 		return (NULL);
 	}
-	stash = update_stash(stash, line);
+	stash[fd] = update_stash(stash[fd], line);
 	return (line);
 }
-/* 
-int	main(void)
+
+/* int	main(void)
 {
 	int		fd;
+	int		fd2;
+	int		fd3;
 	char	*line;
 
 	fd = open("text.txt", O_RDONLY);
-	if (fd == -1)
+	fd2 = open("text2.txt", O_RDONLY);
+	fd3 = open("text3.txt", O_RDONLY);
+	if (fd == -1 || fd2 == -1 || fd3 == -1)
 	{
 		printf("Error: Could not open text.txt\n");
 		return (1);
@@ -121,6 +125,21 @@ int	main(void)
 		printf("%s", line);
 		free(line);
 	}
+	printf("\n");
+	while ((line = get_next_line(fd2)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	printf("\n");
+	while ((line = get_next_line(fd3)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	printf("\n");
 	close(fd);
+	close(fd2);
+	close(fd3);
 	return (0);
-}  */
+} */

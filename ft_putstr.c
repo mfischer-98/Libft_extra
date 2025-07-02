@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsig_putnbr.c                                  :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 12:10:17 by mefische          #+#    #+#             */
-/*   Updated: 2025/05/12 10:33:21 by mefische         ###   ########.fr       */
+/*   Created: 2025/04/14 18:18:44 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/02 11:54:00 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_unsig_putnbr(unsigned int n)
+int	ft_putstr(char *s)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	if (n > 9)
+	i = 0;
+	if (!s)
+		s = "(null)";
+	while (s[i])
 	{
-		count += ft_putnbr(n / 10);
-		count += ft_putnbr(n % 10);
+		write(1, &s[i], 1);
+		i++;
 	}
-	if (n >= 0 && n <= 9)
-	{
-		n = n + 48;
-		count += write(1, &n, 1);
-	}
-	return (count);
+	return (i);
 }

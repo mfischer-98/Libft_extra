@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/20 11:26:16 by mefische          #+#    #+#             */
-/*   Updated: 2025/05/26 11:10:53 by mefische         ###   ########.fr       */
+/*   Created: 2025/04/14 18:43:32 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/02 11:54:27 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <stdio.h>
+int	ft_putnbr(int n)
+{
+	int	count;
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
-int		ft_strchr(const char *s, int c);
-char	*ft_strndup(char *s, size_t line_len);
-char	*ft_strjoin(char *s1, char *s2);
-
-#endif
+	count = 0;
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return (11);
+	}
+	if (n < 0)
+	{
+		count += write(1, "-", 1);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		count += ft_putnbr(n / 10);
+		count += ft_putnbr(n % 10);
+	}
+	if (n >= 0 && n <= 9)
+	{
+		n = n + 48;
+		count += write(1, &n, 1);
+	}
+	return (count);
+}

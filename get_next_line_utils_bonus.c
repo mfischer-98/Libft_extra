@@ -6,13 +6,13 @@
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:55:29 by mefische          #+#    #+#             */
-/*   Updated: 2025/07/01 10:04:24 by mefische         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:17:31 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_gnlstrlen(const char *s)
 {
 	size_t	len;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-int	ft_strchr(const char *s, int c)
+int	ft_gnlstrchr(const char *s, int c)
 {
 	if (!s)
 		return (0);
@@ -37,7 +37,7 @@ int	ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strndup(char *s, size_t line_len)
+char	*ft_gnlstrndup(char *s, size_t line_len)
 {
 	char	*dup;
 	size_t	len;
@@ -60,7 +60,7 @@ char	*ft_strndup(char *s, size_t line_len)
 	return (dup);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_gnlstrjoin(char *s1, char *s2)
 {
 	char	*join;
 	size_t	i;

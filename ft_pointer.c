@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_pointer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mefische <mefische@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 11:33:33 by mefische          #+#    #+#             */
-/*   Updated: 2025/04/23 14:55:02 by mefische         ###   ########.fr       */
+/*   Created: 2025/05/02 14:42:23 by mefische          #+#    #+#             */
+/*   Updated: 2025/07/02 11:55:15 by mefische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_pointer(void *ptr)
 {
-	int	l;
+	int	count;
 
-	l = 0;
-	while (s[l])
-	{
-		l++;
-	}
-	return (l);
+	count = 0;
+	if (!ptr)
+		return (ft_putstr("(nil)"));
+	count += ft_putstr("0x");
+	count += ft_printhexa((unsigned long)ptr, "0123456789abcdef");
+	return (count);
 }
-
-/*int	main()
-{
-	printf("%zu", ft_strlen("Hello"));
-}*/
