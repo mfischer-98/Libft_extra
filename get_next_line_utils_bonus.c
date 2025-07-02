@@ -45,7 +45,7 @@ char	*ft_gnlstrndup(char *s, size_t line_len)
 
 	if (!s)
 		return (NULL);
-	len = ft_strlen(s) - line_len;
+	len = ft_gnlstrlen(s) - line_len;
 	dup = malloc (len + 1);
 	if (!dup)
 		return (NULL);
@@ -67,7 +67,7 @@ char	*ft_gnlstrjoin(char *s1, char *s2)
 	size_t	j;
 
 	i = 0;
-	join = malloc(ft_strlen(s2) + ft_strlen(s1) + 1);
+	join = malloc(ft_gnlstrlen(s2) + ft_gnlstrlen(s1) + 1);
 	if (!join)
 		return (NULL);
 	i = 0;

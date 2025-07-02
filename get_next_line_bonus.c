@@ -22,14 +22,14 @@ static char	*read_line(int fd, char *stash)
 	if (!buffer)
 		return (NULL);
 	bytes = 1;
-	while (!ft_strchr(stash, '\n') && bytes != 0)
+	while (!ft_gnlstrchr(stash, '\n') && bytes != 0)
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
 		if (bytes == -1)
 			return (free(buffer), free(stash), (NULL));
 		buffer[bytes] = '\0';
 		temp = stash;
-		stash = ft_strjoin(temp, buffer);
+		stash = ft_gnlstrjoin(temp, buffer);
 		free(temp);
 		if (!stash)
 			return (free(buffer), (NULL));
@@ -75,7 +75,7 @@ static char	*update_stash(char *stash, char *line)
 
 	if (!line)
 		return (free(stash), (NULL));
-	line_len = ft_strlen(line);
+	line_len = ft_gnlstrlen(line);
 	if (stash[line_len] == '\0')
 		return (free(stash), (NULL));
 	new_stash = ft_gnlstrndup(stash, line_len);
