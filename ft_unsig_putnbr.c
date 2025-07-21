@@ -22,7 +22,7 @@ int	ft_unsig_putnbr(unsigned int n)
 		count += ft_putnbr(n / 10);
 		count += ft_putnbr(n % 10);
 	}
-	if (n >= 0 && n <= 9)
+	if (n <= 9)
 	{
 		n = n + 48;
 		count += write(1, &n, 1);
